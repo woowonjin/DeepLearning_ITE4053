@@ -21,7 +21,7 @@ n = 100
 iterates_num = 2000
 
 # learning rates
-learning_rates = 0.005
+learning_rates = 10
 
 for i in range(m):
     x1_train.append(random.uniform(-10, 10))
@@ -47,7 +47,8 @@ def sigmoid(x):
 
 
 def cross_entropy_loss(a, y):
-    return -(y*np.log10(a) + (1-y)*np.log10(1-a))
+    # a가 1이거나 0일 경우를 대비해 +1e-15
+    return -(y*np.log10(a + 1e-15) + (1-y)*np.log10(1-a + 1e-15))
 
 
 w1 = random.uniform(-1, 1)
